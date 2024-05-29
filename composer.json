@@ -12,6 +12,7 @@
             "homepage": "http://mpclarkson.github.io/"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=8.0.0",
         "guzzlehttp/guzzle": "^7.0.0"
