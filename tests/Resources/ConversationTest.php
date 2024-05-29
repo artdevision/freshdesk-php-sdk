@@ -11,7 +11,7 @@ use Freshdesk\tests\TestCase;
  */
 class ConversationTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

@@ -277,18 +277,13 @@ class Api
     private function performRequest($method, $url, $options) {
 
         try {
-            switch ($method) {
-                case 'GET':
-                    return json_decode($this->client->get($url, $options)->getBody(), true);
-                case 'POST':
-                    return json_decode($this->client->post($url, $options)->getBody(), true);
-                case 'PUT':
-                    return json_decode($this->client->put($url, $options)->getBody(), true);
-                case 'DELETE':
-                    return json_decode($this->client->delete($url, $options)->getBody(), true);
-                default:
-                    return null;
-            }
+            return match ($method) {
+                'GET' => json_decode($this->client->get($url, $options)->getBody(), true),
+                'POST' => json_decode($this->client->post($url, $options)->getBody(), true),
+                'PUT' => json_decode($this->client->put($url, $options)->getBody(), true),
+                'DELETE' => json_decode($this->client->delete($url, $options)->getBody(), true),
+                default => null,
+            };
         } catch (RequestException $e) {
             throw ApiException::create($e);
         }
@@ -302,7 +297,7 @@ class Api
      * @internal
      *
      */
-    private function validateConstructorArgs($apiKey, $domain)
+    private function validateConstructorArgs($apiKey, $domain): void
     {
         if (!isset($apiKey)) {
             throw new Exceptions\InvalidConfigurationException("API key is empty.");
@@ -316,7 +311,7 @@ class Api
     /**
      * @internal
      */
-    private function setupResources()
+    private function setupResources(): void
     {
         //People
         $this->agents = new Agent($this);

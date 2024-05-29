@@ -9,8 +9,9 @@
 namespace Freshdesk\tests;
 
 use Freshdesk\Api;
+use PHPUnit\Framework\TestCase as BaseTestCase;
 
-abstract class TestCase extends \PHPUnit_Framework_TestCase
+abstract class TestCase extends BaseTestCase
 {
 
     abstract function methodsThatShouldExist();
@@ -26,7 +27,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected $class;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->api = new Api("foo", "bar");
     }
@@ -34,7 +35,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider methodsThatShouldExist
      */
-    public function testMethodsExist($method)
+    public function testMethodsExist($method): void
     {
         $this->assertMethodExists($method);
     }
@@ -59,7 +60,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function invokeMethod($method, array $params)
     {
-        $reflection = new \ReflectionClass(get_class($this->class));
+        $reflection = new \ReflectionClass($this->class::class);
         $method = $reflection->getMethod($method);
         $method->setAccessible(true);
 

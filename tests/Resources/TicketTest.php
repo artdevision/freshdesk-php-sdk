@@ -9,9 +9,9 @@ use Freshdesk\Resources\Ticket;
  *
  * @author Matthew Clarkson <mpclarkson@gmail.com>
  */
-class TicketApiTest extends TestCase
+class TicketTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

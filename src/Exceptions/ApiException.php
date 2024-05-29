@@ -57,12 +57,6 @@ class ApiException extends Exception
     }
 
     /**
-     * @var RequestException
-     * @internal
-     */
-    private $exception;
-
-    /**
      * Returns the Request Exception
      *
      * A Guzzle Request Exception is returned
@@ -79,12 +73,14 @@ class ApiException extends Exception
      *
      * Constructs a new exception.
      *
-     * @param RequestException $e
+     * @param RequestException $exception
      * @internal
      */
-    public function __construct(RequestException $e)
+    public function __construct(/**
+     * @internal
+     */
+    private RequestException $exception)
     {
-        $this->exception = $e;
         parent::__construct();
     }
 }

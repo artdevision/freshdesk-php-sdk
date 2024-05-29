@@ -22,12 +22,6 @@ abstract class AbstractResource
 {
 
     /**
-     * @var Api
-     * @internal
-     */
-    private $api;
-
-    /**
      * @var String
      * @internal
      */
@@ -42,9 +36,13 @@ abstract class AbstractResource
      * @internal
      *
      */
-    public function __construct(Api $api)
+    public function __construct(
+        /**
+         * @internal
+         */
+        private Api $api
+    )
     {
-        $this->api = $api;
     }
 
     /**

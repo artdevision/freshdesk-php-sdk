@@ -11,7 +11,7 @@ use Freshdesk\tests\TestCase;
  */
 class ProductTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

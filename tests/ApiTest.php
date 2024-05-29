@@ -11,7 +11,7 @@ use Freshdesk\Api;
  */
 class ApiTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -28,7 +28,7 @@ class ApiTest extends TestCase
     /**
      * @dataProvider publicPropertiesThatShouldExist
      */
-    public function testPublicPropertiesAreAccessible($property)
+    public function testPublicPropertiesAreAccessible($property): void
     {
         $this->assertTrue(property_exists($this->class, $property));
     }
